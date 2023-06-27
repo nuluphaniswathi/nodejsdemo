@@ -1,0 +1,158 @@
+import { Component } from '@angular/core';
+
+//interpolation and property binding
+
+@Component({
+  selector: 'app-test',
+  template:`<h2>Welcome {{name}}</h2>
+  {{2+2}}
+  <h4>{{name.length}}</h4>
+  <h4>{{greet()}}</h4>
+  {{name.toUpperCase()}}
+  {{siteurl}}
+  <input [id]="myId" type="text" value="vishwas">`
+
+})
+export class TestComponent {
+  public name="swathi";
+  public siteurl=window.location.href;
+  public myId="test-id";
+  greet()
+  {
+    return "hello hi everyoen";
+  }
+}
+//class binding
+@Component({
+  selector: 'app-test',
+  template:`<h2 [ngClass]="messageClasses">CodeEvolution</h2>`,**
+  styles:[`
+  .text-success
+  {
+    color:green;
+  }
+  .text-danger
+  {
+    color:red;
+  }
+  .text-special
+  {
+   font-style:italic;
+  }
+  
+  `]
+
+})
+export class TestComponent {
+  public name="codeevolution";
+  public successClass="text-success";
+  public hasError=false;
+  public isSpecial=true;
+  public messageClasses={
+    "text-success":!this.hasError,
+  
+  "text-danger":this.hasError,
+  
+  "text-special":this.isSpecial
+  
+  }
+  
+ 
+}
+//style binding
+<h2 [style.color]='hasError?"red":"yellow"'>Style Binding</h2>`,
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-test',
+  template:`<h2 [ngClass]="messageClasses">CodeEvolution</h2>
+  <h2 [style.color]='hasError?"red":"yellow"'>Style Binding</h2>
+  <h3 [ngStyle]="titleStyles">Style binding2</h3>`,
+  styles:[`
+  .text-success
+  {
+    color:green;
+  }
+  .text-danger
+  {
+    color:red;
+  }
+  .text-special
+  {
+   font-style:italic;
+  }
+  
+  `]
+
+})
+export class TestComponent {
+  public name="codeevolution";
+  public successClass="text-success";
+  public hasError=false;
+  public isSpecial=true;
+  public messageClasses={
+    "text-success":!this.hasError,
+  
+  "text-danger":this.hasError,
+  
+  "text-special":this.isSpecial
+  
+  }
+  public titleStyles={
+    color:"pink",
+    fontStyle:"italic"
+
+  }
+  
+ 
+}
+event binding
+<button (click)="onClick($event)">Greet</button>
+onClick(event){
+    console.log(event);
+    this.greeting="hello world";
+    console.log(this.greeting);
+
+  }
+//two way binding-->[()]-->[]data binding,()->event binding
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-test',
+  template:`
+  <input [(ngModel)]="greeting" type="text">
+  {{greeting}}`
+  ,
+  styles:[]
+  
+})
+export class TestComponent {
+  public greeting="";
+}
+need to import forms module in app.module.ts
+//ngif
+<h2 *ngIf="con";else elseblock>
+  Codeevolution
+  </h2>
+  <ng-template #elseblock>
+  <h2>
+  else block executed;
+  </h2>
+  <ng-template>`,
+  
+
+
+
+https://www.youtube.com/watch?v=y_vwf15eADs&t=121s
+https://ionicframework.com/docs/components
+https://ionic.io/ionicons
+for opening command like this-ng serve -o
+if it shows port already in use this--ng serve --port 4200
+ng g c component/header
+
+The FileReader object lets web applications asynchronously read the contents of files
+ (or raw data buffers) stored on the user's computer,
+The btoa() method encodes a string in base-64.
+
+The btoa() method uses the "A-Z", "a-z", "0-9", "+", "/" and "=" characters to encode the string.
+

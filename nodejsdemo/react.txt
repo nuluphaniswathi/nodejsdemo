@@ -1,0 +1,543 @@
+functional component
+const App= () =>{
+  let name="Swathi";
+  return (
+   
+    <div>
+      <center>
+        <h3>Hello World {name}</h3>
+      </center>
+    </div>
+
+  )
+}
+export default App;
+import React from "react";
+import Test from './test';
+class App extends React.Component{
+  state={
+  name:"Swathi",
+  gender:"female"}
+  render(){
+    return(
+      
+        <div>
+        <center>
+        <Test />
+        </center>
+        </div>
+r
+      
+    )
+
+  }
+}
+import React from "react";
+
+class test extends React.Component{
+    
+    render(){
+        return(
+            <div>
+            <center>
+            <h3>hi this is test.js</h3>
+            </center>
+            </div>
+        )
+    }
+}
+
+export default test;
+states and props
+import React from "react";
+import Test from './test';
+class App extends React.Component{
+  state={
+  name:"Swathi",
+  gender:"male"
+}
+
+  render(){
+    return(
+      
+        <div>
+        <center>
+        <Test name={this.state.name} gender={this.state.gender}/>
+        </center>
+        </div>
+      
+    )
+
+  }
+}
+export default App;
+import React from "react";
+
+class test extends React.Component{
+    
+    render(){
+        return(
+            <div>
+            <center>
+            <h3>Name:{this.props.name}and gender:{this.props.gender}</h3>
+            </center>
+            </div>
+        )
+    }
+}
+export default test;
+state values in functional components
+case1:
+import React,{useState} from 'react'
+
+const App = () => {
+  const [name,setName]=useState('Leo');
+  return (
+    <div>
+      <center>
+          <h1>Name:{name}</h1>
+      </center>
+      
+    </div>
+  )
+}
+export default App
+case2:
+
+
+const App = () => {
+  const [data,setName]=useState({
+    name:'Neo',
+    age:21
+    
+  });
+  //destructuring the data
+  const{name,age}=data;
+  return (
+    <div>
+      <center>
+          <Test Name={name} age={age}/>
+      </center>
+      
+    </div>
+  )
+}
+
+export default App
+import React from 'react'
+
+const test = (props) => {
+  return (
+    <div>
+        <center>
+            <h3> Name:{props.Name} age:{props.age}</h3>
+        </center>
+      
+    </div>
+  )
+}
+
+export default test
+
+Onchange Event Handler:
+_______________________
+
+import React,{useState} from 'react'
+const App = () => {
+  const [name,setName]=useState('');
+  const [email,setEmail]=useState('');
+  return (
+    <div>
+      <center>
+        Name:{name}<br/>
+        <input type="text" name="name" onChange={(e)=>setName(e.target.value)}/><br/>
+        email:{email}<br/>
+        <input type="email" email="email" onChange={(e)=>setEmail(e.target.value)}/>
+      </center>
+      
+    </div>
+  )
+}
+
+export default App
+********Creating form data and validating in react *************
+import React,{useState} from 'react'
+const App = () => {
+  const [data,setData]=useState({
+    name:'',
+    password:''
+  });
+  const changeHandler=e =>{
+    setData({...data,[e.target.name]:e.target.value})
+  }
+  const submitHandler=e=>{
+    e.preventDefault();
+    //console.log(data);
+    if(data.password.length<5)
+    {
+      alert("please enter password >5")
+    }
+    else{
+      console.log(data);
+    }
+  }
+  
+  return (
+    <div>
+      <center>
+        <form onSubmit={submitHandler}>
+        <label>Name</label><br/>
+        <input type="text" name="name" onChange={changeHandler}/><br/>
+        <label>Password</label><br/>
+        <input type="password" name="password" onChange={changeHandler}/><br/>
+        <input type="submit" value="login"/>
+        </form>
+      </center>
+      
+    </div>
+  )
+}
+
+export default App
+bootstrap  styling applying:
+_________________
+bootstrap5cdn
+
+for importing css file go to bootstrap5cdn and copy css and paste it in index.html.we can also import css file from app.css
+like import './App.css'
+and also like className=App
+or else style={color:'red'}
+
+import './App.css'
+const App = () => {
+  const [data,setData]=useState({
+    name:'',
+    password:''
+  });
+  const changeHandler=e =>{
+    setData({...data,[e.target.name]:e.target.value})
+  }
+  const submitHandler=e=>{
+    e.preventDefault();
+    //console.log(data);
+    if(data.password.length<5)
+    {
+      alert("please enter password >5")
+    }
+    else{
+      console.log(data);
+    }
+  }
+  
+  return (
+    <div className='App'>
+      <center>
+        <form onSubmit={submitHandler}>
+        <label style={{'color':'red'}}>Name</label><br/>
+        <input type="text" name="name" onChange={changeHandler}/><br/>
+        <label>Password</label><br/>
+        <input type="password" name="password" onChange={changeHandler}/><br/>
+        <input type="submit" value="login" className='btn btn-primary'/>
+        </form>
+      </center>
+      
+    </div>
+  )
+}
+
+export default App
+*********************About BrowserRouter,Routes,Route***************
+How to link one page in another page
+App.js
+import React from 'react'
+import { BrowserRouter,Routes,Route} from 'react-router-dom'
+import Dashboard from './Dashboard';
+import Home from './Home';
+import About from './About';
+const App = () => {
+  return (
+    <div>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='./Dashboard' element={<Dashboard />}/>
+        <Route path='./About' element={<About />}/>
+      </Routes>
+      </BrowserRouter>
+      
+    </div>
+  )
+}
+
+export default App
+Home.js
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+const Home = () => {
+  return (
+    <div>
+         <center>
+            <h2>Homepage</h2>
+            <Link to='/about'>about</Link>
+            <Link to='/Dashboard'>dashboard</Link>
+        </center>
+      
+    </div>
+  )
+}
+
+export default Home
+dasboard.js
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+const Dashboard = () => {
+  return (
+    <div>
+         <center>
+            <h2>Dashboardpage</h2>
+            <Link to='/'>Home</Link>
+        </center>
+      
+    </div>
+  )
+}
+
+export default Dashboard
+
+path:<Route path='/dashboard/:name/>
+<Link to='/dashboard/john'/>
+Query:
+<Route path='/dashboard'/>
+<Link to='/dashboard?name=John'/>
+*************Hoc***********
+Higherorder component(HOC) is an advanced technique in React for reusing component logic.
+HOC is a pure function with zero side effects and doesn't modify the input component
+Higher order component is a function that takes a component and returns a new component
+Hoc.js
+import React from 'react'
+
+const Hoc = (Component) => {
+  return (
+    class extends React.Component{
+      state={
+         auth:true
+
+      }
+        render(){
+            return(
+                <div>
+                    {this.state.auth ?<Component />:<h1>Please login</h1>}
+
+                </div>
+  )
+        }
+    }
+  )
+export default Hoc
+....app.js...
+import React from 'react';
+import Hoc from './Hoc';
+
+const App = () => {
+  return (
+    <div>
+      <center>
+      <h1>Welcome user</h1>
+      </center>
+    </div>
+  )
+}
+
+export default Hoc(App);
+-----------
+useeffect
+---------
+loading the data into the database using firebase
+first go to firebase.google.com and then go to console
+then create project by accepting all terms and conditions and then go to realtime data base select test mode
+import React,{useState} from 'react'
+
+const App = () => {
+  const [data,setData]=useState({
+    name:'',
+    pass:''
+  })
+  const changeHandler=e=>{
+    setData({...data,[e.target.name]:e.target.value});
+  }
+  const submitHandler=e=>{
+    e.preventDefault();
+    fetch('https://test-api-4e4bd-default-rtdb.firebaseio.com/data.json',
+    {
+    method:'POST',
+    body:JSON.stringify(data),
+    headers:{
+      'Content-Type':'application/json; charset=UTF-8'
+    }
+  }
+    ).then(res=>alert('Data Posted')).catch(err=>console.log(err))
+  }
+  return (
+    <div>
+      <center>
+      <form onSubmit={submitHandler}>
+        <label>Name</label><br/>
+        <input type="text" name="name" onChange={changeHandler}/><br/>
+        <label>Password</label><br/>
+        <input type="password" name="pwd" onChange={changeHandler}/><br/>
+        <input type="button" value="post"/>
+      </form>
+      </center>
+    </div>
+  )
+}
+
+export default App
+************REACT Context API************
+*Context API is an kind of feature used to share data with multiple components
+*Without passing the through props manually
+*without including props drilling concept
+App.js
+import React,{createContext,useState} from 'react'
+import ComponentA from './ComponentA'
+import ComponentB from './ComponentB'
+export const store=createContext();
+const App = () => {
+  const [data,setData]=useState(0);
+  return (
+    <store.Provider value={[data,setData]}>
+    <div>
+      Hello
+      <ComponentA/>
+      <ComponentB/>
+      
+    </div>
+    </store.Provider>
+  )
+}
+
+export default App
+Componenet.js
+import React,{useContext} from 'react'
+import {store} from './App'
+
+const componentA = () => {
+    const [data,setData]=useContext(store)
+  return (
+    <div>
+        componentA{data}
+      
+    </div>
+  )
+}
+
+export default ComponentA
+
+ComponentB.js
+
+import React,{useContext} from 'react'
+import {store} from './App'
+
+const ComponentB = () => {
+    const [data,setData]=useContext(store)
+  return (
+    <div>
+      ComponentB{data}
+    </div>
+  )
+}
+
+export default ComponentB
+App.js
+import React,{createContext,useState} from 'react'
+import Count from  './Count';
+import Display from './Display';
+export const store=createContext();
+const App = () => {
+  const [data,setData]=useState([
+    {
+    name:"Swathi"
+  },
+    {
+    age:50
+  },
+    {
+    branch:"cse"
+  }
+
+  ]);
+  return (
+    <store.Provider value={[data,setData]}>
+    <div>
+      Hello
+      <Count/>
+      <Display/>
+      
+
+    </div>
+    </store.Provider>
+  )
+}
+
+export default App
+count.js
+import React,{useContext} from 'react'
+import {store} from './App';
+
+const Count = () => {
+    const[data,setData]=useContext(store)
+  return (
+    <div className='card'>
+        <div className="card-body">
+            <h3 className='card-title'>Count:{data.length}</h3>
+
+        </div>
+
+      
+    </div>
+  )
+}
+
+export default Count
+display.js
+import React,{useContext} from 'react'
+import {store} from './App'
+const Display = () => {
+    const[data,setData]=useContext(store);
+  return (
+    <div className='card'>
+        <div className='card-body'>
+        {data.map(item=> <h3 className='card-title'>{item.
+        name}</h3>)}
+      </div>
+    </div>
+  )
+}
+
+export default Display
+*********Redux*****
+Redux is an open source javascript library for managing application state values
+required packages:
+npm install redux
+npm install react-redux
+npm install redux-thunk  -->middleware
+npm install redux-devtools-extension
+redux data flow
+action creators---->Reducer--><--store
+                     React component
+                                                                                                                                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
